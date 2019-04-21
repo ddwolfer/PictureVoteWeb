@@ -53,5 +53,11 @@ $(document).ready(function () {
         }
     }
     </script>   
+<?php 
+    $five = 5;
+    $three = 3;
+    $testFloat = $five/$three;
+    echo $testFloat;
+ ?>
 </body>
 </html>

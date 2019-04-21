@@ -66,32 +66,40 @@
 			    	picNum = picNum + 1 //下一張
 			    	var resultJPG = ''.concat("pic/",picNum,".jpg");
 			        $("#nextPicJPG").attr("src",resultJPG); //更改圖片數據
-			        var resultJPEG = ''.concat("pic/",picNum,".jpeg");
-			        $("#nextPicJPEG").attr("src",resultJPEG); //更改圖片數據
-			        var resultPNG = ''.concat("pic/",picNum,".png");
-			        $("#nextPicPNG").attr("src",resultPNG); //更改圖片數據
+			        // var resultJPEG = ''.concat("pic/",picNum,".jpeg");
+			        // $("#nextPicJPEG").attr("src",resultJPEG); //更改圖片數據
+			        // var resultPNG = ''.concat("pic/",picNum,".png");
+			        // $("#nextPicPNG").attr("src",resultPNG); //更改圖片數據
 			        document.getElementById("picNumberNow").innerHTML=picNum.toString(); //更改提示
 			    });
 			});
-			//判斷按了哪一個按鈕
+			//按下按鈕
 			function ButtonCheck(btnClick) {
+				//判斷按了哪一個按鈕
 				var scoreClick = btnClick.name
-				alert(scoreClick)
-				//利用ajax把評分傳到另一個php存到資料庫
+				alert("分數:"+scoreClick)
+				//誰案的
+				var voteUser = "<?php echo $VoteName ?>";
+				alert("評分者:"+voteUser)
+				//利用ajax把評分跟暱稱傳到另一個php存到資料庫
 			    $.ajax({
 			        url: 'insertVoteScoreData.php',
 			        cache: false,
 			        dataType: 'html',
 			        type: 'post',//可改 get 或 post
 			        data: {
-			           	
+			           	scoreClick,
+			           	voteUser
 			        },
 			        error: function(xhr) {
 			            alert('request 發生錯誤');
 			        },
 			        success: function(response) {
+			        	$('#ajaxRequestTest').html(response);
+                		$('#ajaxRequestTest').fadeIn();
 			        }
 			    });
+			    alert("評分完成 下一張圖片")
 			}
 		</script>
 		<!-- 換圖片 -->
@@ -105,15 +113,15 @@
 	 		// 顯示三種圖片(因為副檔名不一樣，先這樣弄之後改) START
 		 	$ImageShowJPG = "pic/".strval($UserVoteCount).".jpg"; 
 		 	echo "<img src='$ImageShowJPG' style='width: 500px;' id='nextPicJPG'>";
-		 	$ImageShowJPEG = "pic/".strval($UserVoteCount).".jpg";
-		 	echo "<img src='$ImageShowJPEG' style='width: 500px;' id='nextPicJPEG'>";
-		 	$ImageShowPNG = "pic/".strval($UserVoteCount).".png";
-		 	echo "<img src='$ImageShowPNG' style='width: 500px;' id='nextPicPNG'>";
+		 	// $ImageShowJPEG = "pic/".strval($UserVoteCount).".jpg";
+		 	// echo "<img src='$ImageShowJPEG' style='width: 500px;' id='nextPicJPEG'>";
+		 	// $ImageShowPNG = "pic/".strval($UserVoteCount).".png";
+		 	// echo "<img src='$ImageShowPNG' style='width: 500px;' id='nextPicPNG'>";
 		 	// 顯示三種圖片(因為副檔名不一樣，先這樣弄之後改) END
 	 	?>		
 	 		<br> <br> 
 	 		<!-- 一堆按鈕START  -->
-	 		<div id="voteScore" style="width: 70%;">
+	 		<div id="voteScore" style="width: 80%;">
 	 			<input id="btnVote" class="btnVoteScore" type="button" name="1" value="1" style="width: 50px; height: 30px; font-size: 20px;" onclick="ButtonCheck(this)">
 	 			&nbsp &nbsp &nbsp
 	 			<input id="btnVote" class="btnVoteScore" type="button" name="2" value="2" style="width: 50px; height: 30px; font-size: 20px;" onclick="ButtonCheck(this)">
@@ -124,7 +132,7 @@
 	 			&nbsp &nbsp &nbsp
 	 			<input id="btnVote" class="btnVoteScore" type="button" name="5" value="5" style="width: 50px; height: 30px; font-size: 20px;" onclick="ButtonCheck(this)">
 	 			&nbsp &nbsp &nbsp
-	 			<input id="btnVote" class="btnVoteScore" type="button" name="0" value="skip" style="width: 50px; height: 30px; font-size: 20px;" onclick="ButtonCheck(this)">
+	 			<input id="btnVote" class="btnVoteScore" type="button" name="0" value="skip" style="width: 70px; height: 30px; font-size: 20px;" onclick="ButtonCheck(this)">
 	 		</div>	
 	 		<!-- 一堆按鈕END  -->
 	 	</div><?php
@@ -134,7 +142,7 @@
 	} 
  ?>
  </center>
-
+<div id="ajaxRequestTest"></div>
 <!-- 結束 -->
 </body>
 </html>
