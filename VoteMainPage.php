@@ -16,7 +16,26 @@
 	<title></title>
 </head>
 <body>
+<style type="text/css">
+	#showPicLevel{
+		width: 60%;
+	}
+	#LevelOne{
+		width: 33%;
 
+		float:left;
+	}
+	#LevelTwo{
+		width: 33%;
+
+		float:left;
+	}
+	#LevelThree{
+		width: 33%;
+
+		float:right;
+	}
+</style>
 <!-- 先偵測有沒有填入暱稱 -->
 <?php
 
@@ -77,10 +96,10 @@
 			function ButtonCheck(btnClick) {
 				//判斷按了哪一個按鈕
 				var scoreClick = btnClick.name
-				alert("分數:"+scoreClick)
+				// alert("分數:"+scoreClick)
 				//誰案的
 				var voteUser = "<?php echo $VoteName ?>";
-				alert("評分者:"+voteUser)
+				// alert("評分者:"+voteUser)
 				//利用ajax把評分跟暱稱傳到另一個php存到資料庫
 			    $.ajax({
 			        url: 'insertVoteScoreData.php',
@@ -99,7 +118,7 @@
                 		$('#ajaxRequestTest').fadeIn();
 			        }
 			    });
-			    alert("評分完成 下一張圖片")
+			    // alert("評分完成 下一張圖片")
 			}
 		</script>
 		<!-- 換圖片 -->
@@ -141,7 +160,34 @@
 
 	} 
  ?>
+ 
+<br><br>
+
+<div id="showPicLevel">
+	<div id="LevelOne">
+		一分範例
+	</div>
+	<div id="LevelTwo">
+		三分範例
+	</div>
+	<div id="LevelThree">
+		五分範例
+	</div>
+</div>
+<div id="showPicLevel">
+	<div id="LevelOne">
+		<img src="pic/Level/1.jpg" style="width: 200px;">
+	</div>
+	<div id="LevelTwo">
+		<img src="pic/Level/2.jpg" style="width: 200px;">
+	</div>
+	<div id="LevelThree">
+		<img src="pic/Level/3.jpg" style="width: 200px;">
+	</div>
+</div>
+
  </center>
+ <br>
 <div id="ajaxRequestTest"></div>
 <!-- 結束 -->
 </body>
