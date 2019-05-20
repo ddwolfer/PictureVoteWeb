@@ -1,9 +1,6 @@
 <?php 
 //資料庫連線
-$hostname = "localhost"; 
-$username = "id6646993_dwolf"; 
-$password = "123456";
-$db_name = "id6646993_iosfcuscore";
+require("dbconnect_picinfo.php");
 //連線
 $db=new PDO("mysql:host=".$hostname.";dbname=".$db_name, $username, $password,array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));//PDO::MYSQL_ATTR_INIT_COMMAND 設定編碼
 $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);//錯誤訊息提醒

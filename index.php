@@ -13,8 +13,7 @@
 	</form> 
 
 	<br>
-	<input type="button" name="" value="看結果" style="width:240px;height:80px;font-size:30px;">
-	顯示結果頁面還沒做
+	<input type="button" name="" value="看結果" onclick="location.href='ShowVoteResult.php'" style="width:240px;height:80px;font-size:30px;">
 	<br> <br>
 	<input type="button" value="放好玩的東西" onclick="location.href='JustForFun.php'" style="width:240px;height:80px;font-size:30px;">
 	<br> <br>

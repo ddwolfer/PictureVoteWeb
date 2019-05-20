@@ -1,18 +1,16 @@
 <?php  
-	$hostname = "localhost"; 
-	$username = "id6646993_dwolf"; 
-	$password = "123456";
-	$db_name = "id6646993_iosfcuscore";
+	require("dbconnect_picinfo.php");
 
 	$VoteName = $_POST['Name'];
 	$flagContinue = 0;
 	$UserVoteCount = 1;
+	$MAXImage = 450;
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-	<script src="//code.jquery.com/jquery-3.3.1.js"></script>
+	<script src="js/jquery-3.3.1.js"></script>
 	<title></title>
 </head>
 <body>
@@ -82,7 +80,9 @@
 			$(document).ready(function(){
 			    $(".btnVoteScore").click(function(){
 			    	//做換圖片的動作
-			    	picNum = picNum + 1 //下一張
+			    	if (picNum < 450) {
+			    		picNum = picNum + 1 //下一張
+			    	}
 			    	var resultJPG = ''.concat("pic/",picNum,".jpg");
 			        $("#nextPicJPG").attr("src",resultJPG); //更改圖片數據
 			        // var resultJPEG = ''.concat("pic/",picNum,".jpeg");
@@ -131,7 +131,7 @@
 	 	?><div id="main" style="width: 60%;" ><?php
 	 		// 顯示三種圖片(因為副檔名不一樣，先這樣弄之後改) START
 		 	$ImageShowJPG = "pic/".strval($UserVoteCount).".jpg"; 
-		 	echo "<img src='$ImageShowJPG' style='width: 500px;' id='nextPicJPG'>";
+		 	echo "<img src='$ImageShowJPG' style='height: 400px;' id='nextPicJPG'>";
 		 	// $ImageShowJPEG = "pic/".strval($UserVoteCount).".jpg";
 		 	// echo "<img src='$ImageShowJPEG' style='width: 500px;' id='nextPicJPEG'>";
 		 	// $ImageShowPNG = "pic/".strval($UserVoteCount).".png";
@@ -151,7 +151,7 @@
 	 			&nbsp &nbsp &nbsp
 	 			<input id="btnVote" class="btnVoteScore" type="button" name="5" value="5" style="width: 50px; height: 30px; font-size: 20px;" onclick="ButtonCheck(this)">
 	 			&nbsp &nbsp &nbsp
-	 			<input id="btnVote" class="btnVoteScore" type="button" name="0" value="skip" style="width: 70px; height: 30px; font-size: 20px;" onclick="ButtonCheck(this)">
+	 			
 	 		</div>	
 	 		<!-- 一堆按鈕END  -->
 	 	</div><?php
